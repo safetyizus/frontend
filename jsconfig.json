@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "paths": {
+            "components/*": ["./components/*"],
+            "common/*": ["./components/common/*"],
+            "sections/*": ["./components/sections/*"],
+            "elements/*": ["./components/elements/*"],
+            "wrappers/*": ["./components/wrappers/*"],
+            "icons/*": ["./components/icons/*"],
+            "helpers/*": ["./helpers/*"],
+            "hooks/*": ["./hooks/*"],
+            "store/*": ["./store/*"],
+        }
+    }
+}
