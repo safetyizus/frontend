@@ -1,5 +1,11 @@
+import Layout from "wrappers/Layout";
+
 const Page = () => {
-    return <h1>Login Account</h1>;
+    return (
+        <Layout>
+            <h1>Login Account</h1>
+        </Layout>
+    );
 };
 
 export const getServerSideProps = async (ctx) => {

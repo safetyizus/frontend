@@ -15,6 +15,7 @@ module.exports = {
         config.resolve.alias.sections = resolve("components/sections");
         config.resolve.alias.wrappers = resolve("components/wrappers");
         config.resolve.alias.icons = resolve("components/icons");
+        config.resolve.alias.features = resolve("features/");
         config.resolve.alias.helpers = resolve("helpers/");
         config.resolve.alias.hooks = resolve("hooks/");
         config.resolve.alias.store = resolve("store/");

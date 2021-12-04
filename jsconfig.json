@@ -7,6 +7,7 @@
             "elements/*": ["./components/elements/*"],
             "wrappers/*": ["./components/wrappers/*"],
             "icons/*": ["./components/icons/*"],
+            "features/*": ["./features/*"],
             "helpers/*": ["./helpers/*"],
             "hooks/*": ["./hooks/*"],
             "store/*": ["./store/*"],
