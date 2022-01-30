@@ -19,6 +19,8 @@ module.exports = {
         config.resolve.alias.helpers = resolve("helpers/");
         config.resolve.alias.hooks = resolve("hooks/");
         config.resolve.alias.store = resolve("store/");
+        config.resolve.alias.styles = resolve("components/styles/");
+        config.resolve.alias.hocs = resolve("components/hocs/");
 
         config.module.rules.push({
             test: /\.svg$/,

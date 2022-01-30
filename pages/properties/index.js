@@ -1,3 +1,5 @@
+import withLayout from "components/hocs/withLayout";
+
 const Page = () => {
     return <h1>View Property</h1>;
 };
@@ -8,4 +10,4 @@ export const getServerSideProps = async (ctx) => {
     };
 };
 
-export default Page;
+export default withLayout(Page);
