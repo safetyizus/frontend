@@ -3,7 +3,7 @@ import Layout from "wrappers/Layout";
 const Page = () => {
     return (
         <Layout>
-            <h1>Login Account</h1>
+            <h1>View Account</h1>
         </Layout>
     );
 };
