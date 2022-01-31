@@ -1,7 +1,8 @@
+import Header from "components/common/Header";
 import withLayout from "components/hocs/withLayout";
 
 const Page = () => {
-    return <h1>Create Property</h1>;
+    return <Header title="Create Property" />;
 };
 
 export const getServerSideProps = async (ctx) => {

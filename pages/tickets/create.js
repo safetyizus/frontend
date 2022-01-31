@@ -1,7 +1,8 @@
+import Header from "components/common/Header";
 import withLayout from "components/hocs/withLayout";
 
 const Page = () => {
-    return <h1>Create Ticket</h1>;
+    return <Header title="Create Ticket" />;
 };
 
 export const getServerSideProps = async (ctx) => {

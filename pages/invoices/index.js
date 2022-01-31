@@ -1,7 +1,13 @@
+import Header from "components/common/Header";
 import withLayout from "components/hocs/withLayout";
 
 const Page = () => {
-    return <h1>List Invoices</h1>;
+    return (
+        <Header
+            title="Invoices"
+            actions={[{ href: "/invoices/create", text: "Create New" }]}
+        />
+    );
 };
 
 export const getServerSideProps = async (ctx) => {

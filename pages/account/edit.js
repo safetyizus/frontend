@@ -1,7 +1,8 @@
-import withLayout from "hocs/withLayout";
+import Header from "components/common/Header";
+import withLayout from "components/hocs/withLayout";
 
 const Page = () => {
-    return <h1>Edit Account</h1>;
+    return <Header title="Edit Account" />;
 };
 
 export const getServerSideProps = async (ctx) => {

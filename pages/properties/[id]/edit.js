@@ -1,7 +1,8 @@
+import Header from "components/common/Header";
 import withLayout from "components/hocs/withLayout";
 
-const Page = ({ id }) => {
-    return <h1>Edit Property: {id}</h1>;
+const Page = () => {
+    return <Header title="Edit Property" />;
 };
 
 export const getServerSideProps = async (ctx) => {

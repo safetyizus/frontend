@@ -1,7 +1,13 @@
+import Header from "components/common/Header";
 import withLayout from "components/hocs/withLayout";
 
 const Page = () => {
-    return <h1>View Property</h1>;
+    return (
+        <Header
+            title="Properties"
+            actions={[{ href: "/properties/create", text: "Create New" }]}
+        />
+    );
 };
 
 export const getServerSideProps = async (ctx) => {

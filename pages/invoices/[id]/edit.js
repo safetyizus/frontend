@@ -1,7 +1,8 @@
+import Header from "components/common/Header";
 import withLayout from "components/hocs/withLayout";
 
 const Page = ({ id }) => {
-    return <h1>Edit Invoice: {id}</h1>;
+    return <Header title="Edit Invoice" />;
 };
 
 export const getServerSideProps = async (ctx) => {

@@ -1,10 +1,8 @@
-import { useUser } from "@auth0/nextjs-auth0";
-import withLayout from "components/hocs/withLayout";
+import Header from "common/Header";
+import withLayout from "hocs/withLayout";
 
 const Page = () => {
-    const user = useUser();
-
-    return "Home Page";
+    return <Header title="Home Page" />;
 };
 
 export const getServerSideProps = async (ctx) => {

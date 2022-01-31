@@ -1,7 +1,13 @@
-import withLayout from "hocs/withLayout";
+import Header from "components/common/Header";
+import withLayout from "components/hocs/withLayout";
 
 const Page = () => {
-    return <h1>View Account</h1>;
+    return (
+        <Header
+            title="My Account"
+            actions={[{ href: "/account/edit", text: "Edit Details" }]}
+        />
+    );
 };
 
 export const getServerSideProps = async (ctx) => {
