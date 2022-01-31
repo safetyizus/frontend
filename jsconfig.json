@@ -13,6 +13,7 @@
             "hooks/*": ["./hooks/*"],
             "hocs/*": ["./components/hocs/*"],
             "store/*": ["./store/*"],
+            "navigation/*": ["./features/navigation/*"],
         }
     }
 }

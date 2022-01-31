@@ -21,6 +21,7 @@ module.exports = {
         config.resolve.alias.store = resolve("store/");
         config.resolve.alias.styles = resolve("components/styles/");
         config.resolve.alias.hocs = resolve("components/hocs/");
+        config.resolve.alias.navigation = resolve("features/navigation/");
 
         config.module.rules.push({
             test: /\.svg$/,

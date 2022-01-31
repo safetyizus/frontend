@@ -1,11 +1,7 @@
-import Layout from "wrappers/Layout";
+import withLayout from "hocs/withLayout";
 
 const Page = () => {
-    return (
-        <Layout>
-            <h1>Edit Account: {id}</h1>
-        </Layout>
-    );
+    return <h1>Edit Account</h1>;
 };
 
 export const getServerSideProps = async (ctx) => {
@@ -14,4 +10,4 @@ export const getServerSideProps = async (ctx) => {
     };
 };
 
-export default Page;
+export default withLayout(Page);
