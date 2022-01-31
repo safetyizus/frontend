@@ -11,6 +11,7 @@ import NAV_LINKS from "navigation/data/NAV_DATA";
 
 import NavigationLink from "./NavigationLink";
 import Account from "./Account";
+import { useRouter } from "next/router";
 
 // SECTION STYLES
 
@@ -18,7 +19,7 @@ const Body = styled.div`
     display: flex;
     flex-direction: column;
     width: 90vw;
-    max-width: ${spacers.base(48)};
+    max-width: ${spacers.base(36)};
     height: 100%;
 
     background: ${colors.gray["100"]};
@@ -26,17 +27,12 @@ const Body = styled.div`
 
 const Header = styled.div`
     background: ${colors.primary};
-    padding: ${spacers.margin(3)} ${spacers.margin(1)};
+    padding: ${spacers.margin(1)};
 `;
 
 const Links = styled.div`
     padding: ${spacers.base(1)} 0;
     height: 100%;
-`;
-
-const Footer = styled.div`
-    padding: ${spacers.base(1)} 0;
-    background: ${colors.gray["900"]};
 `;
 
 // HEADER STYLES
@@ -49,9 +45,8 @@ const SiteName = styled.h3`
 // FOOTER STYLES`
 
 const Navigation = () => {
-    const { user } = useUser();
+    const router = useRouter();
 
-    console.log(user);
     return (
         <Body>
             <Header>
@@ -65,11 +60,11 @@ const Navigation = () => {
                         href={link.url}
                         icon={link.icon}
                         text={link.text}
+                        active={router.asPath.includes(link.url)}
                     />
                 ))}
             </Links>
             <Account />
-            <Footer></Footer>
         </Body>
     );
 };
