@@ -2,6 +2,8 @@ import React from "react";
 import NextLink from "next/link";
 
 const Link = ({ href, children, ...props }) => {
+    if (!href) return children;
+
     const relativeLinkRegex = /\/\S*/;
     const isRelativeLink = relativeLinkRegex.test(href);
 

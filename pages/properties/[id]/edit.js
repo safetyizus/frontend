@@ -2,7 +2,15 @@ import Header from "components/common/Header";
 import withLayout from "components/hocs/withLayout";
 
 const Page = () => {
-    return <Header title="Edit Property" />;
+    return (
+        <Header
+            title="Edit Property"
+            crumbs={[
+                { href: "/", text: "Home" },
+                { href: "/properties", text: "Properties" },
+            ]}
+        />
+    );
 };
 
 export const getServerSideProps = async (ctx) => {

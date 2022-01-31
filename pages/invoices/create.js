@@ -2,7 +2,15 @@ import Header from "components/common/Header";
 import withLayout from "components/hocs/withLayout";
 
 const Page = () => {
-    return <Header title="Create Invoice" />;
+    return (
+        <Header
+            title="Create Invoice"
+            crumbs={[
+                { href: "/", text: "Home" },
+                { href: "/invoices", text: "Invoices" },
+            ]}
+        />
+    );
 };
 
 export const getServerSideProps = async (ctx) => {

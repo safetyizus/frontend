@@ -6,6 +6,10 @@ const Page = () => {
         <Header
             title="Properties"
             actions={[{ href: "/properties/create", text: "Create New" }]}
+            crumbs={[
+                { href: "/", text: "Home" },
+                { href: "/properties", text: "Properties" },
+            ]}
         />
     );
 };
