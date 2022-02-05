@@ -1,5 +1,6 @@
 import { type } from "components/styles/mixins";
 import { colors, spacers } from "components/styles/primitives";
+import { nanoid } from "nanoid";
 import React, { Fragment } from "react";
 import styled from "styled-components";
 import Link from "./Link";
@@ -28,7 +29,7 @@ const Breadcrumbs = ({ crumbs }) => {
     return (
         <Body>
             {crumbs.map((crumb, index) => (
-                <Fragment>
+                <Fragment key={nanoid()}>
                     <Link href={crumb.href}>
                         <Crumb>{crumb.text}</Crumb>
                     </Link>

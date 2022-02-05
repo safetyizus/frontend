@@ -1,7 +1,7 @@
 import { css } from "styled-components";
 import { breakpoints, maxWidths, spacers } from "styles/primitives";
 
-export const media = name => `@media (min-width: ${breakpoints[name]})`;
+export const media = (name) => `@media (min-width: ${breakpoints[name]})`;
 
 export const type = {};
 
@@ -106,13 +106,18 @@ layout.container = () => css`
     width: 100%;
     margin: 0 auto;
 
-    ${Object.keys(breakpoints).map(key => {
+    ${Object.keys(breakpoints).map((key) => {
         return css`
             ${media(key)} {
                 max-width: ${maxWidths[key]};
             }
         `;
     })}
+`;
+
+layout.clamp = () => css`
+    width: 100%;
+    max-width: ${spacers.base(100)};
 `;
 
 const colWidth = `calc((100% - ${spacers.spacing(11)}) / 12)`;

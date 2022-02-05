@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { type } from "styles/mixins";
+import { layout, type } from "styles/mixins";
 import { colors, spacers } from "styles/primitives";
 
 import Button from "elements/Button";
@@ -11,8 +11,15 @@ import Breadcrumbs from "elements/Breadcrumbs";
 
 const Body = styled.div`
     display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: ${spacers.margin(2)} ${spacers.margin(1)};
     border-bottom: 1px solid ${colors.gray["100"]};
+`;
+
+const Wrapper = styled.div`
+    ${layout.clamp}
+    display: flex;
     justify-content: space-between;
     align-items: center;
 `;
@@ -40,18 +47,20 @@ const Title = styled.h1`
 const Header = ({ title, actions, crumbs }) => {
     return (
         <Body>
-            <Content>
-                {!!crumbs && <Breadcrumbs crumbs={crumbs} />}
-                <Title>{title}</Title>
-            </Content>
-            <Actions>
-                {actions &&
-                    actions.map((action) => (
-                        <Link href={action.href}>
-                            <Button theme="primary">{action.text}</Button>
-                        </Link>
-                    ))}
-            </Actions>
+            <Wrapper>
+                <Content>
+                    {!!crumbs && <Breadcrumbs crumbs={crumbs} />}
+                    <Title>{title}</Title>
+                </Content>
+                <Actions>
+                    {actions &&
+                        actions.map((action) => (
+                            <Link href={action.href}>
+                                <Button theme="primary">{action.text}</Button>
+                            </Link>
+                        ))}
+                </Actions>
+            </Wrapper>
         </Body>
     );
 };

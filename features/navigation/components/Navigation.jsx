@@ -12,6 +12,7 @@ import NAV_LINKS from "navigation/data/NAV_DATA";
 import NavigationLink from "./NavigationLink";
 import Account from "./Account";
 import { useRouter } from "next/router";
+import { nanoid } from "nanoid";
 
 // SECTION STYLES
 
@@ -57,6 +58,7 @@ const Navigation = () => {
             <Links>
                 {NAV_LINKS.map((link) => (
                     <NavigationLink
+                        key={nanoid()}
                         href={link.url}
                         icon={link.icon}
                         text={link.text}

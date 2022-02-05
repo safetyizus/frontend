@@ -18,7 +18,7 @@ const THEMES = {
 
 const BaseButton = styled.button`
     ${type.em};
-    display: block;
+    display: inline-flex;
     padding: ${spacers.base(1)} ${spacers.base(2)};
     border: none;
     border-radius: 2px;
