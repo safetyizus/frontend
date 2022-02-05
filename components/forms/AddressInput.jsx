@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { useField } from "formik";
+import { useFormikContext } from "formik";
 
 import styled, { css } from "styled-components";
 import { type } from "components/styles/mixins";
@@ -144,11 +144,10 @@ const SelectedAddressText = styled.p`
 const AddressInput = ({ label, name }) => {
     const [searchResults, setSearchResults] = useState(null);
     const [selectedResult, setSelectedResult] = useState(null);
-    const [loading, setLoading] = useState(false);
     const [searchValue, setSearchValue] = useState("");
+    const [loading, setLoading] = useState(false);
 
-    const [_, meta, helpers] = useField(name);
-    const { setValue } = helpers;
+    const { values, setValues } = useFormikContext();
 
     const address = useDebounce(searchValue, 1000);
 
@@ -168,11 +167,24 @@ const AddressInput = ({ label, name }) => {
 
     useEffect(() => {
         if (selectedResult) {
-            setValue(selectedResult.place_name);
+            const { context } = selectedResult;
+
+            const { text: postcode } = context.find((item) => {
+                return item.id.includes("postcode");
+            });
+
+            const { text: state } = context.find((item) => {
+                return item.id.includes("region");
+            });
+
+            setValues({
+                ...values,
+                address: selectedResult.place_name,
+                postcode,
+                state,
+            });
         }
     }, [selectedResult]);
-
-    console.log(selectedResult);
 
     return (
         <Body>
@@ -189,7 +201,6 @@ const AddressInput = ({ label, name }) => {
                     <Spinner />
                 </SpinnerContainer>
             </SearchContainer>
-            <Error show={meta.touched && meta.error}>{meta.error}</Error>
             <Dropdown show={searchResults}>
                 {searchResults?.map((result) => (
                     <DropdownItem
