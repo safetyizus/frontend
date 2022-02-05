@@ -1,4 +1,4 @@
-import Header from "common/Header";
+import Header from "components/sections/Header";
 import withLayout from "hocs/withLayout";
 
 const Page = () => {
