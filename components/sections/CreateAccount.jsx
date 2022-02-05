@@ -16,10 +16,34 @@ const CreateAccount = () => {
         phone: null,
         company: null,
         address: null,
+        postcode: null,
+        state: null,
+    };
+
+    const handleSubmit = async (values) => {
+        const url = "https://siu-api-dev.herokuapp.com/v1/users/update";
+
+        const data = {
+            user: {
+                email: "",
+                type: values.type,
+                name: values.first_name,
+                surname: values.last_name,
+                role: "",
+                company: values.company,
+                address: values.address,
+                postal_code: values.postcode,
+                state: values.state,
+                mobile_number: values.phone,
+                ownership_entity: "",
+            },
+        };
+
+        alert(JSON.stringify(data));
     };
 
     return (
-        <Formik initialValues={initialValues}>
+        <Formik initialValues={initialValues} onSubmit={handleSubmit}>
             <Form>
                 <FormSection heading="What type of account are you making?">
                     <AccountTypeInput name="type" />
