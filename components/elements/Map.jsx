@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import ReactMapGL from "react-map-gl";
 import styled from "styled-components";
 import { spacers } from "components/styles/primitives";
 import { MAPBOX_API_TOKEN, MAPBOX_MAP_STYLE } from "helpers/mapbox";
-import { useEffect } from "react/cjs/react.development";
 
 const CONTROL_PROPS = {
     boxZoom: false,
