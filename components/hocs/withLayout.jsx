@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 import { Navigation } from "navigation";
+import { useRouter } from "next/router";
+import useLocalStorage from "hooks/useLocalStorage";
 
 const Container = styled.div`
     display: flex;
@@ -17,6 +19,15 @@ const Body = styled.div`
 
 const withLayout = (Component) => {
     const WrappedComponent = (props) => {
+        const router = useRouter();
+        const [user, _] = useLocalStorage("siu_user");
+
+        useEffect(() => {
+            if (!user?.is_complete) {
+                router.push("/account/create");
+            }
+        });
+
         return (
             <Container>
                 <Navigation />
