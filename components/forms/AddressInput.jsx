@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { useFormikContext } from "formik";
+import { useField, useFormikContext } from "formik";
 
 import styled, { css } from "styled-components";
 import { type } from "components/styles/mixins";
@@ -24,8 +24,10 @@ const Label = styled.h3`
 `;
 
 const Error = styled.p`
+    ${(props) => !props.show && `display: none`};
     ${type.p};
     color: darkred;
+    margin-top: ${spacers.base(1)};
 `;
 
 const Input = styled.input`
@@ -142,16 +144,24 @@ const SelectedAddressText = styled.p`
 `;
 
 const AddressInput = ({ label, name }) => {
+    const { values, setValues } = useFormikContext();
+    const [_, meta, __] = useField(name);
+
     const [searchResults, setSearchResults] = useState(null);
     const [selectedResult, setSelectedResult] = useState(null);
     const [searchValue, setSearchValue] = useState("");
     const [loading, setLoading] = useState(false);
 
-    const { values, setValues } = useFormikContext();
-
     const address = useDebounce(searchValue, 1000);
 
-    const handleSearchChange = (event) => {
+    const handleValueChange = (event) => {
+        setValues({
+            ...values,
+            address: event.target.value,
+        });
+    };
+
+    const handleUserInput = (event) => {
         setSearchValue(event.target.value);
         setLoading(true);
     };
@@ -196,7 +206,11 @@ const AddressInput = ({ label, name }) => {
             </MapContainer>
             <Label>{label}</Label>
             <SearchContainer>
-                <Input onChange={handleSearchChange} />
+                <Input
+                    value={values?.address}
+                    onChange={handleValueChange}
+                    onKeyPress={handleUserInput}
+                />
                 <SpinnerContainer show={loading}>
                     <Spinner />
                 </SpinnerContainer>
@@ -222,6 +236,7 @@ const AddressInput = ({ label, name }) => {
                     {selectedResult?.place_name}
                 </SelectedAddressText>
             </SelectedAddress>
+            <Error show={meta.touched && meta.error}>{meta.error}</Error>
         </Body>
     );
 };

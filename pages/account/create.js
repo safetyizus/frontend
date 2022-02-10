@@ -1,8 +1,22 @@
-import Header from "components/sections/Header";
-import withLayout from "components/hocs/withLayout";
-import CreateAccount from "components/sections/CreateAccount";
+import withLayout from "hocs/withLayout";
+
+import Header from "sections/Header";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+
+import AccountForm from "components/sections/AccountForm";
+import useLocalStorage from "hooks/useLocalStorage";
 
 const Page = () => {
+    const router = useRouter();
+    const [user, _] = useLocalStorage("siu_user", {});
+
+    useEffect(() => {
+        if (user?.is_complete) {
+            router.push("/account/edit");
+        }
+    }, []);
+
     return (
         <>
             <Header
@@ -12,7 +26,7 @@ const Page = () => {
                     { href: "/account", text: "My Account" },
                 ]}
             />
-            <CreateAccount />
+            <AccountForm />
         </>
     );
 };

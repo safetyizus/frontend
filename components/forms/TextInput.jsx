@@ -46,8 +46,10 @@ const Label = styled.h3`
 `;
 
 const Error = styled.p`
+    ${(props) => !props.show && `display: none`};
     ${type.p};
     color: darkred;
+    margin-top: ${spacers.base(1)};
 `;
 
 const TextInput = ({ label, ...props }) => {

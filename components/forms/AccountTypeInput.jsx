@@ -13,6 +13,11 @@ import Agent from "components/icons/Agent";
 const Body = styled.div`
     display: flex;
     flex-direction: column;
+`;
+
+const Items = styled.div`
+    display: flex;
+    flex-direction: column;
 
     & > *:not(:last-child) {
         margin: 0 0 ${spacers.spacing(1)} 0;
@@ -77,6 +82,13 @@ const ItemIcon = styled.div`
     padding: ${spacers.spacing(1)};
 `;
 
+const Error = styled.p`
+    ${(props) => !props.show && `display: none`};
+    ${type.p};
+    color: darkred;
+    margin-top: ${spacers.base(1)};
+`;
+
 const ITEM_VALUES = [
     {
         icon: Owner,
@@ -100,19 +112,22 @@ const AccountTypeInput = ({ name }) => {
 
     return (
         <Body>
-            {ITEM_VALUES.map((item) => (
-                <Item
-                    key={nanoid()}
-                    onClick={() => setValue(item.value)}
-                    active={item.value === value}
-                >
-                    <ItemIcon>{React.createElement(item.icon)}</ItemIcon>
-                    <ItemText>
-                        <ItemHeading>{item.heading}</ItemHeading>
-                        <ItemSubheading>{item.subheading}</ItemSubheading>
-                    </ItemText>
-                </Item>
-            ))}
+            <Items>
+                {ITEM_VALUES.map((item) => (
+                    <Item
+                        key={nanoid()}
+                        onClick={() => setValue(item.value)}
+                        active={item.value === value}
+                    >
+                        <ItemIcon>{React.createElement(item.icon)}</ItemIcon>
+                        <ItemText>
+                            <ItemHeading>{item.heading}</ItemHeading>
+                            <ItemSubheading>{item.subheading}</ItemSubheading>
+                        </ItemText>
+                    </Item>
+                ))}
+            </Items>
+            <Error show={meta.touched && meta.error}>{meta.error}</Error>
         </Body>
     );
 };

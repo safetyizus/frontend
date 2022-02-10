@@ -9,6 +9,7 @@
             "wrappers/*": ["./components/wrappers/*"],
             "icons/*": ["./components/icons/*"],
             "forms/*": ["./components/forms/*"],
+            "contexts/*": ["./contexts/*"],
             "features/*": ["./features/*"],
             "helpers/*": ["./helpers/*"],
             "hooks/*": ["./hooks/*"],

@@ -8,6 +8,8 @@ import { colors, spacers } from "styles/primitives";
 import Button from "elements/Button";
 import Link from "elements/Link";
 import Breadcrumbs from "elements/Breadcrumbs";
+import NavigationToggle from "features/navigation/components/NavigationToggle";
+import { nanoid } from "nanoid";
 
 const Body = styled.div`
     display: flex;
@@ -21,7 +23,7 @@ const Wrapper = styled.div`
     ${layout.clamp}
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
 `;
 
 const Content = styled.div`
@@ -49,13 +51,14 @@ const Header = ({ title, actions, crumbs }) => {
         <Body>
             <Wrapper>
                 <Content>
+                    <NavigationToggle />
                     {!!crumbs && <Breadcrumbs crumbs={crumbs} />}
                     <Title>{title}</Title>
                 </Content>
                 <Actions>
                     {actions &&
                         actions.map((action) => (
-                            <Link href={action.href}>
+                            <Link key={nanoid()} href={action.href}>
                                 <Button theme="primary">{action.text}</Button>
                             </Link>
                         ))}
