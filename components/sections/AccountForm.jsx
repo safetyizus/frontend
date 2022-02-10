@@ -77,7 +77,11 @@ const AccountForm = () => {
                 </FormSection>
                 <FormSection>
                     <div>
-                        <Button type="submit">Create your Account</Button>
+                        <Button type="submit">
+                            {user?.is_complete
+                                ? "Save Details"
+                                : "Create Account"}
+                        </Button>
                     </div>
                 </FormSection>
             </Form>

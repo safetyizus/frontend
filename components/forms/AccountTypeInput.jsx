@@ -42,6 +42,7 @@ const Item = styled.div`
     border: 1px solid ${colors.gray["100"]};
 
     &:hover {
+        cursor: pointer;
         background: ${colors.gray["100"]};
         border-color: ${colors.gray["200"]};
     }
