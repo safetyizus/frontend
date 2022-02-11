@@ -33,7 +33,7 @@ const Cta = styled.p`
 `;
 
 const Row = styled.div`
-    padding: ${spacers.margin(1)} 0;
+    padding: ${spacers.margin(1)};
     border-bottom: 1px solid ${colors.gray["100"]};
 
     background: ${colors.white};

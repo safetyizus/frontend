@@ -239,7 +239,7 @@ const AddressInput = ({ label, name }) => {
                     <InputLabel>Unit</InputLabel>
                     <Input
                         name="unit"
-                        value={values?.unit}
+                        value={values?.unit ?? ""}
                         onChange={handleValueChange}
                     />
                 </UnitGroup>
@@ -247,7 +247,7 @@ const AddressInput = ({ label, name }) => {
                     <InputLabel>Address</InputLabel>
                     <Input
                         name="address"
-                        value={values?.address}
+                        value={values?.address ?? ""}
                         onChange={handleValueChange}
                         onKeyPress={handleUserInput}
                     />

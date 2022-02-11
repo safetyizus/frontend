@@ -26,7 +26,7 @@ const withLayout = (Component) => {
             if (!user?.is_complete) {
                 router.push("/account/create");
             }
-        });
+        }, []);
 
         return (
             <Container>
