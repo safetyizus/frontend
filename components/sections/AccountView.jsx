@@ -77,7 +77,9 @@ const AccountView = () => {
                 </Row>
                 <Row>
                     <Name>Address</Name>
-                    <Value>{user.address}</Value>
+                    <Value>
+                        {user.unit} {user.address}
+                    </Value>
                 </Row>
                 <Row>
                     <Name>State</Name>

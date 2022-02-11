@@ -30,6 +30,26 @@ const Error = styled.p`
     margin-top: ${spacers.base(1)};
 `;
 
+const InputGroup = styled.div`
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+`;
+
+const UnitGroup = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: ${spacers.base(12)};
+    margin-right: ${spacers.spacing(1)};
+`;
+
+const InputLabel = styled.p`
+    ${type.p};
+    color: ${colors.gray["500"]};
+    margin-bottom: ${spacers.base(1)};
+`;
+
 const Input = styled.input`
     ${type.p};
     padding: ${spacers.spacing(1)};
@@ -56,6 +76,10 @@ const Input = styled.input`
         border-color: ${colors.gray["300"]};
         outline: none;
     }
+
+    &[name="address"] {
+        padding-right: ${spacers.margin(2)};
+    }
 `;
 
 const MapContainer = styled.div`
@@ -67,13 +91,13 @@ const MapContainer = styled.div`
 
 const SearchContainer = styled.div`
     position: relative;
+    display: flex;
 `;
 
 const SpinnerContainer = styled.div`
     position: absolute;
     right: ${spacers.spacing(1)};
-    top: 50%;
-    transform: translateY(-50%);
+    bottom: ${spacers.spacing(1)};
 
     ${(props) =>
         !props.show &&
@@ -157,7 +181,7 @@ const AddressInput = ({ label, name }) => {
     const handleValueChange = (event) => {
         setValues({
             ...values,
-            address: event.target.value,
+            [event.target.name]: event.target.value,
         });
     };
 
@@ -187,10 +211,15 @@ const AddressInput = ({ label, name }) => {
                 return item.id.includes("region");
             });
 
+            const { text: suburb } = context.find((item) => {
+                return item.id.includes("locality");
+            });
+
             setValues({
                 ...values,
                 address: selectedResult.place_name,
                 postcode,
+                suburb,
                 state,
             });
         }
@@ -206,14 +235,26 @@ const AddressInput = ({ label, name }) => {
             </MapContainer>
             <Label>{label}</Label>
             <SearchContainer>
-                <Input
-                    value={values?.address}
-                    onChange={handleValueChange}
-                    onKeyPress={handleUserInput}
-                />
-                <SpinnerContainer show={loading}>
-                    <Spinner />
-                </SpinnerContainer>
+                <UnitGroup>
+                    <InputLabel>Unit</InputLabel>
+                    <Input
+                        name="unit"
+                        value={values?.unit}
+                        onChange={handleValueChange}
+                    />
+                </UnitGroup>
+                <InputGroup>
+                    <InputLabel>Address</InputLabel>
+                    <Input
+                        name="address"
+                        value={values?.address}
+                        onChange={handleValueChange}
+                        onKeyPress={handleUserInput}
+                    />
+                    <SpinnerContainer show={loading}>
+                        <Spinner />
+                    </SpinnerContainer>
+                </InputGroup>
             </SearchContainer>
             <Dropdown show={searchResults}>
                 {searchResults?.map((result) => (
@@ -233,7 +274,7 @@ const AddressInput = ({ label, name }) => {
                     Selected Address
                 </SelectedAddressHeading>
                 <SelectedAddressText>
-                    {selectedResult?.place_name}
+                    {values?.unit} {selectedResult?.place_name}
                 </SelectedAddressText>
             </SelectedAddress>
             <Error show={meta.touched && meta.error}>{meta.error}</Error>
