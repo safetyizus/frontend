@@ -5,11 +5,8 @@ import styled from "styled-components";
 import { layout, type } from "styles/mixins";
 import { colors, spacers } from "styles/primitives";
 
-import Button from "elements/Button";
-import Link from "elements/Link";
 import Breadcrumbs from "elements/Breadcrumbs";
-import NavigationToggle from "features/navigation/components/NavigationToggle";
-import { nanoid } from "nanoid";
+import NavigationToggle from "navigation/components/NavigationToggle";
 
 const Body = styled.div`
     display: flex;
@@ -46,7 +43,7 @@ const Title = styled.h1`
     ${type.h1};
 `;
 
-const Header = ({ title, actions, crumbs }) => {
+const Header = ({ title, crumbs, children }) => {
     return (
         <Body>
             <Wrapper>
@@ -55,14 +52,7 @@ const Header = ({ title, actions, crumbs }) => {
                     {!!crumbs && <Breadcrumbs crumbs={crumbs} />}
                     <Title>{title}</Title>
                 </Content>
-                <Actions>
-                    {actions &&
-                        actions.map((action) => (
-                            <Link key={nanoid()} href={action.href}>
-                                <Button theme="primary">{action.text}</Button>
-                            </Link>
-                        ))}
-                </Actions>
+                <Actions>{children}</Actions>
             </Wrapper>
         </Body>
     );

@@ -1,3 +1,6 @@
+import Link from "elements/Link";
+import Button from "elements/Button";
+
 import withLayout from "hocs/withLayout";
 
 import Header from "sections/Header";
@@ -8,12 +11,15 @@ const Page = () => {
         <>
             <Header
                 title="My Account"
-                actions={[{ href: "/account/edit", text: "Edit Details" }]}
                 crumbs={[
                     { href: "/", text: "Home" },
                     { href: "/account", text: "My Account" },
                 ]}
-            />
+            >
+                <Link href="/account/edit">
+                    <Button>Edit Details</Button>
+                </Link>
+            </Header>
             <AccountView />
         </>
     );

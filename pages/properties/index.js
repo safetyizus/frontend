@@ -1,16 +1,22 @@
-import Header from "components/sections/Header";
-import withLayout from "components/hocs/withLayout";
+import Link from "elements/Link";
+import Button from "elements/Button";
+
+import Header from "sections/Header";
+import withLayout from "hocs/withLayout";
 
 const Page = () => {
     return (
         <Header
             title="Properties"
-            actions={[{ href: "/properties/create", text: "Create New" }]}
             crumbs={[
                 { href: "/", text: "Home" },
                 { href: "/properties", text: "Properties" },
             ]}
-        />
+        >
+            <Link href="/properties/create">
+                <Button>Create New</Button>
+            </Link>
+        </Header>
     );
 };
 
