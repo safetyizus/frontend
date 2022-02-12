@@ -10,7 +10,6 @@ import Link from "elements/Link";
 import NAV_LINKS from "navigation/data/NAV_DATA";
 
 import NavigationLink from "./NavigationLink";
-import Account from "./Account";
 import { useRouter } from "next/router";
 import { nanoid } from "nanoid";
 import { useInterface } from "contexts/InterfaceContext";
@@ -21,16 +20,19 @@ import Close from "components/icons/Close";
 
 const Body = styled.div`
     display: flex;
-    height: 100%;
+    padding: ${spacers.margin(1)};
+    height: 100vh;
     width: 90vw;
     max-width: ${spacers.base(36)};
     flex-direction: column;
+    background: ${colors.gray["100"]};
 
     position: fixed;
     left: -100%;
-    background: ${colors.gray["100"]};
+    border-right: 1px solid ${colors.gray["100"]};
 
     transition: 0.5s ease left;
+    z-index: 1000;
 
     ${(props) => {
         if (props.show) {
@@ -52,12 +54,37 @@ const Header = styled.div`
     align-items: center;
 
     background: ${colors.primary};
-    padding: ${spacers.margin(1)};
+    color: ${colors.white};
+    margin-bottom: ${spacers.spacing(1)};
+    padding: ${spacers.spacing(1)};
+
+    border-radius: 4px;
+`;
+
+const Groups = styled.div`
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+
+    & > *:not(:last-child) {
+        margin-bottom: ${spacers.spacing(1)};
+    }
+`;
+
+const Group = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+const GroupLabel = styled.p`
+    ${type.p};
+    color: ${colors.gray["500"]};
 `;
 
 const Links = styled.div`
     padding: ${spacers.base(1)} 0;
-    height: 100%;
+    border-radius: 4px;
+    overflow: hidden;
 `;
 
 // HEADER STYLES
@@ -111,18 +138,24 @@ const Navigation = () => {
                     <Close color={colors.white} />
                 </CloseButton>
             </Header>
-            <Links>
-                {NAV_LINKS.map((link) => (
-                    <NavigationLink
-                        key={nanoid()}
-                        href={link.url}
-                        icon={link.icon}
-                        text={link.text}
-                        active={router.asPath.includes(link.url)}
-                    />
+            <Groups>
+                {NAV_LINKS.map((group) => (
+                    <Group>
+                        <GroupLabel>{group.label}</GroupLabel>
+                        <Links>
+                            {group.links.map((link) => (
+                                <NavigationLink
+                                    key={nanoid()}
+                                    href={link.url}
+                                    icon={link.icon}
+                                    text={link.text}
+                                    active={router.asPath.includes(link.url)}
+                                />
+                            ))}
+                        </Links>
+                    </Group>
                 ))}
-            </Links>
-            <Account />
+            </Groups>
         </Body>
     );
 };

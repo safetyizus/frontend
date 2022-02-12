@@ -5,13 +5,19 @@ import Link from "elements/Link";
 import { colors, spacers } from "styles/primitives";
 import { type } from "styles/mixins";
 
+const Text = styled.div`
+    ${type.p};
+`;
+
+const Icon = styled.div`
+    margin-right: ${spacers.spacing(1)};
+`;
+
 const Body = styled.div`
     display: flex;
     padding: ${spacers.spacing(1)};
-    padding-left: ${spacers.margin(1)};
-    background: ${colors.gray["100"]};
+    background: ${colors.white};
     border-left: 2px solid ${colors.gray["100"]};
-    justify-content: space-between;
 
     transition: 0.2s ease background, 0.1s ease border-color;
 
@@ -28,28 +34,20 @@ const Body = styled.div`
     ${(props) =>
         props.active &&
         css`
-            border-color: ${colors.gray["700"]};
+            border-color: ${colors.primary};
         `}
-`;
-
-const Text = styled.div`
-    ${type.p};
-`;
-
-const Icon = styled.div`
-    margin-right: ${spacers.spacing(1)};
 `;
 
 const NavigationLink = ({ href, text, icon, active }) => {
     return (
         <Link href={href}>
             <Body active={active}>
-                <Text>{text}</Text>
                 <Icon>
                     {React.createElement(icon, {
-                        color: colors.primary,
+                        color: active ? colors.primary : colors.gray["500"],
                     })}
                 </Icon>
+                <Text>{text}</Text>
             </Body>
         </Link>
     );

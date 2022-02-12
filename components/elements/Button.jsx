@@ -13,6 +13,7 @@ const STATES = {
 const THEMES = {
     PRIMARY: "primary",
     SECONDARY: "secondary",
+    DANGER: "danger",
     INLINE: "inline",
 };
 
@@ -56,6 +57,24 @@ const SecondaryButton = styled(BaseButton)`
     }
 `;
 
+const DangerButton = styled(BaseButton)`
+    background: none;
+    color: darkred;
+    border: 1px solid red;
+
+    &:hover {
+        color: darkred;
+        background: ${colors.gray["100"]};
+        border: 1px solid red;
+    }
+
+    &:active {
+        color: darkred;
+        background: ${colors.gray["200"]};
+        border: 1px solid red;
+    }
+`;
+
 const InlineButton = styled(BaseButton)`
     background: none;
     color: ${colors.primary};
@@ -75,6 +94,8 @@ const Button = ({ state, theme, ...props }) => {
             return <SecondaryButton state={state} {...props} />;
         case THEMES.INLINE:
             return <InlineButton state={state} {...props} />;
+        case THEMES.DANGER:
+            return <DangerButton state={state} {...props} />;
         case THEMES.PRIMARY:
         default:
             return <PrimaryButton state={state} {...props} />;
