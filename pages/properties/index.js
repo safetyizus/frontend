@@ -29,13 +29,14 @@ const Page = () => {
                         { text: "Newest", value: "newest" },
                         { text: "Oldest", value: "oldest" },
                         { text: "Suburb", value: "suburb" },
+                        { text: "State", value: "state" },
                     ]}
                 />
                 <Link href="/properties/create">
                     <Button>Create New</Button>
                 </Link>
             </Header>
-            <PropertyList />
+            <PropertyList sort={sort} />
         </>
     );
 };

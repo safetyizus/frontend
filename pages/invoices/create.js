@@ -1,5 +1,6 @@
 import Header from "components/sections/Header";
 import withLayout from "components/hocs/withLayout";
+import withAccount from "components/hocs/withAccount";
 
 const Page = () => {
     return (
