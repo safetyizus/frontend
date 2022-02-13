@@ -1,5 +1,6 @@
 import Header from "components/sections/Header";
 import withLayout from "components/hocs/withLayout";
+import withAccount from "components/hocs/withAccount";
 import { useRouter } from "next/router";
 import PropertyForm from "components/sections/PropertyForm";
 
@@ -26,4 +27,4 @@ export const getServerSideProps = async (ctx) => {
     };
 };
 
-export default withLayout(Page);
+export default withAccount(withLayout(Page));

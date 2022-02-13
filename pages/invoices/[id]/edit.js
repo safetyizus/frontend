@@ -19,4 +19,4 @@ export const getServerSideProps = async (ctx) => {
     };
 };
 
-export default withLayout(Page);
+export default withAccount(withLayout(Page));

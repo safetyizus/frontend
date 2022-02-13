@@ -1,8 +1,9 @@
 import Link from "components/elements/Link";
+import Select from "components/elements/Select";
 import { layout, type } from "components/styles/mixins";
 import { colors, spacers } from "components/styles/primitives";
 import useLocalStorage from "hooks/useLocalStorage";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const Body = styled.div`
@@ -49,7 +50,11 @@ const Row = styled.div`
     }
 `;
 
-const PropertyList = () => {
+const HeaderRow = styled.div`
+    padding: ${spacers.margin(1)};
+`;
+
+const PropertyList = ({ sort }) => {
     const [properties, _] = useLocalStorage("siu_properties", {});
 
     return (

@@ -26,6 +26,7 @@ const Wrapper = styled.div`
 const Content = styled.div`
     display: flex;
     flex-direction: column;
+    margin-right: ${spacers.margin(2)};
 
     & > *:not(:last-child) {
         margin-bottom: ${spacers.spacing(1)};

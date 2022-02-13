@@ -1,5 +1,6 @@
 import Header from "sections/Header";
 import withLayout from "hocs/withLayout";
+import withAccount from "hocs/withAccount";
 
 import Link from "elements/Link";
 import Button from "elements/Button";
@@ -26,4 +27,4 @@ export const getServerSideProps = async (ctx) => {
     };
 };
 
-export default withLayout(Page);
+export default withAccount(withLayout(Page));

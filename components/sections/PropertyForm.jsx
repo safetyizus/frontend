@@ -2,17 +2,17 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
+import { nanoid } from "nanoid";
 
 import FormRow from "components/forms/FormRow";
 import FormSection from "components/forms/FormSection";
-import AccountTypeInput from "components/forms/AccountTypeInput";
 import TextInput from "components/forms/TextInput";
 import AddressInput from "components/forms/AddressInput";
-import Button from "components/elements/Button";
-import useLocalStorage from "hooks/useLocalStorage";
-import { nanoid } from "nanoid";
 import LightswitchInput from "components/forms/LightswitchInput";
 import CheckboxInput from "components/forms/CheckboxInput";
+
+import Button from "components/elements/Button";
+import useLocalStorage from "hooks/useLocalStorage";
 
 const PropertySchema = Yup.object().shape({
     id: Yup.string().required(),
@@ -35,6 +35,9 @@ const PropertySchema = Yup.object().shape({
     confirm_correct_info: Yup.boolean().isTrue().required(),
     confirm_tenant_notified: Yup.boolean().isTrue().required(),
     confirm_additional_costs: Yup.boolean().isTrue().required(),
+    // Meta Details
+    created_at: Yup.number().required(),
+    updated_at: Yup.number().required(),
 });
 
 const PropertyForm = ({ id }) => {
@@ -62,16 +65,21 @@ const PropertyForm = ({ id }) => {
         confirm_correct_info: false,
         confirm_tenant_notified: false,
         confirm_additional_costs: false,
+        // Meta Details
+        created_at: Date.now(),
+        updated_at: Date.now(),
         ...(properties[id] ?? {}),
     };
 
     console.log(initialValues);
 
     const handleSubmit = async (values) => {
+        console.log(values);
         setProperties({
             ...properties,
             [values.id]: {
                 ...values,
+                updated_at: Date.now(),
             },
         });
 

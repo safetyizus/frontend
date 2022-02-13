@@ -1,4 +1,5 @@
 import withLayout from "hocs/withLayout";
+import withAccount from "hocs/withAccount";
 
 import Header from "sections/Header";
 import { useEffect } from "react";
@@ -37,4 +38,4 @@ export const getServerSideProps = async (ctx) => {
     };
 };
 
-export default withLayout(Page);
+export default withAccount(withLayout(Page));

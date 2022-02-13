@@ -112,6 +112,16 @@ const PropertyView = ({ id }) => {
                     </Value>
                 </Row>
             </Section>
+            <Section>
+                <Row>
+                    <Name>Created On</Name>
+                    <Value>{new Date(property.created_at).toString()}</Value>
+                </Row>
+                <Row>
+                    <Name>Updated On</Name>
+                    <Value>{new Date(property.updated_at).toString()}</Value>
+                </Row>
+            </Section>
         </Body>
     );
 };
