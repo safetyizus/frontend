@@ -117,7 +117,8 @@ layout.container = () => css`
 
 layout.clamp = () => css`
     width: 100%;
-    max-width: ${spacers.base(100)};
+    max-width: ${spacers.base(112)};
+    margin: 0 auto;
 `;
 
 const colWidth = `calc((100% - ${spacers.spacing(11)}) / 12)`;

@@ -14,7 +14,7 @@ const Body = styled.div`
 
 const Input = styled.input`
     ${type.p};
-    padding: ${spacers.spacing(1)};
+    padding: ${spacers.base(1)};
 
     transition: 0.25s ease border-color, 0.25s ease background,
         0.1s ease transform;
