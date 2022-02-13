@@ -25,11 +25,10 @@ const Body = styled.div`
     width: 90vw;
     max-width: ${spacers.base(36)};
     flex-direction: column;
-    background: ${colors.gray["100"]};
+    background: ${colors.gray["900"]};
 
     position: fixed;
     left: -100%;
-    border-right: 1px solid ${colors.gray["100"]};
 
     transition: 0.5s ease left;
     z-index: 1000;
@@ -78,7 +77,7 @@ const Group = styled.div`
 
 const GroupLabel = styled.p`
     ${type.p};
-    color: ${colors.gray["500"]};
+    color: ${colors.gray["700"]};
 `;
 
 const Links = styled.div`

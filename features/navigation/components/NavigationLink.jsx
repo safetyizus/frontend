@@ -7,6 +7,7 @@ import { type } from "styles/mixins";
 
 const Text = styled.div`
     ${type.p};
+    color: ${colors.gray["200"]};
 `;
 
 const Icon = styled.div`
@@ -16,19 +17,19 @@ const Icon = styled.div`
 const Body = styled.div`
     display: flex;
     padding: ${spacers.spacing(1)};
-    background: ${colors.white};
-    border-left: 2px solid ${colors.gray["100"]};
+    background: ${colors.black};
+    border-left: 2px solid ${colors.black};
 
-    transition: 0.2s ease background, 0.1s ease border-color;
+    transition: 0.1s ease background, 0.1s ease border-color;
 
     &:hover {
-        background: ${colors.gray["200"]};
-        border-color: ${colors.gray["200"]};
+        background: ${colors.gray["800"]};
+        border-color: ${colors.gray["800"]};
     }
 
     &:active {
-        background: ${colors.white};
-        border-color: ${colors.white};
+        background: ${colors.gray["700"]};
+        border-color: ${colors.gray["700"]};
     }
 
     ${(props) =>
@@ -44,7 +45,7 @@ const NavigationLink = ({ href, text, icon, active }) => {
             <Body active={active}>
                 <Icon>
                     {React.createElement(icon, {
-                        color: active ? colors.primary : colors.gray["500"],
+                        color: active ? colors.primary : colors.gray["700"],
                     })}
                 </Icon>
                 <Text>{text}</Text>
