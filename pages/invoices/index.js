@@ -1,6 +1,7 @@
-import Header from "sections/Header";
 import withLayout from "hocs/withLayout";
-import withAccount from "hocs/withAccount";
+import { getAuthProps } from "helpers/ssr";
+
+import Header from "sections/Header";
 
 import Link from "elements/Link";
 import Button from "elements/Button";
@@ -21,10 +22,12 @@ const Page = () => {
     );
 };
 
-export const getServerSideProps = async (ctx) => {
+const getProps = async (context) => {
     return {
         props: {},
     };
 };
 
-export default withAccount(withLayout(Page));
+export const getServerSideProps = getAuthProps(getProps);
+
+export default withLayout(Page);
