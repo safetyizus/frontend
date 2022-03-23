@@ -1,11 +1,11 @@
-import Link from "elements/Link";
-import Button from "elements/Button";
-
 import withLayout from "hocs/withLayout";
-import withAccount from "hocs/withAccount";
+import { getAuthProps } from "helpers/ssr";
 
 import Header from "sections/Header";
 import AccountView from "sections/AccountView";
+
+import Link from "elements/Link";
+import Button from "elements/Button";
 
 const Page = () => {
     return (
@@ -29,10 +29,12 @@ const Page = () => {
     );
 };
 
-export const getServerSideProps = async (ctx) => {
+const getProps = async (context) => {
     return {
         props: {},
     };
 };
 
-export default withAccount(withLayout(Page));
+export const getServerSideProps = getAuthProps(getProps);
+
+export default withLayout(Page);

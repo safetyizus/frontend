@@ -1,23 +1,11 @@
 import withLayout from "hocs/withLayout";
-import withAccount from "hocs/withAccount";
+import { getAuthProps } from "helpers/ssr";
+import { getCurrentProfile } from "helpers/profile";
 
 import Header from "sections/Header";
-import { useEffect } from "react";
-import { useRouter } from "next/router";
-
-import AccountForm from "components/sections/AccountForm";
-import useLocalStorage from "hooks/useLocalStorage";
+import AccountForm from "sections/AccountForm";
 
 const Page = () => {
-    const router = useRouter();
-    const [user, _] = useLocalStorage("siu_user", {});
-
-    useEffect(() => {
-        if (user?.is_complete) {
-            router.push("/account/edit");
-        }
-    }, []);
-
     return (
         <>
             <Header
@@ -32,10 +20,22 @@ const Page = () => {
     );
 };
 
-export const getServerSideProps = async (ctx) => {
+const getProps = async (context) => {
+    const currentProfile = await getCurrentProfile(context);
+    if (currentProfile?.is_complete) {
+        return {
+            redirect: {
+                destination: "/account/edit",
+                permanent: false,
+            },
+        };
+    }
+
     return {
         props: {},
     };
 };
 
-export default withAccount(withLayout(Page));
+export const getServerSideProps = getAuthProps(getProps);
+
+export default withLayout(Page);
