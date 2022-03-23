@@ -1,7 +1,9 @@
-import { layout, type, media } from "components/styles/mixins";
-import { colors, spacers } from "components/styles/primitives";
 import React from "react";
 import styled from "styled-components";
+import { nanoid } from "nanoid";
+
+import { layout, type, media } from "components/styles/mixins";
+import { colors, spacers } from "components/styles/primitives";
 
 const Body = styled.div`
     background: ${colors.white};
@@ -65,7 +67,7 @@ const PageCards = ({ cards }) => {
         <Body>
             <Container>
                 {cards.map((card) => (
-                    <Column>
+                    <Column key={nanoid()}>
                         <Card>
                             <CardHeader bg={card.color}>
                                 {React.createElement(card.icon, {

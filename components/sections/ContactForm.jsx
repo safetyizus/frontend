@@ -30,10 +30,10 @@ const AccountSchema = Yup.object().shape({
 
 const ContactForm = () => {
     const initialValues = {
-        name: null,
-        phone: null,
-        email: null,
-        enquiry_from: null,
+        name: "",
+        phone: "",
+        email: "",
+        enquiry_from: "",
     };
 
     const handleSubmit = async (values) => {

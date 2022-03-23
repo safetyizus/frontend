@@ -2,6 +2,7 @@ import Link from "components/elements/Link";
 import { layout, type } from "components/styles/mixins";
 import { colors, spacers } from "components/styles/primitives";
 import useLocalStorage from "hooks/useLocalStorage";
+import useProperties from "hooks/useProperties";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
@@ -50,6 +51,7 @@ const Row = styled.div`
 `;
 
 const PropertyList = ({ sort }) => {
+    useProperties();
     const [properties, _] = useLocalStorage("siu_properties", {});
     const [sortedProperties, setSortedProperties] = useState(
         Object.values(properties)

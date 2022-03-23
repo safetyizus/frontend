@@ -1,9 +1,9 @@
-import Button from "components/elements/Button";
-import Link from "components/elements/Link";
-import { layout, type } from "components/styles/mixins";
-import { colors, spacers } from "components/styles/primitives";
 import React from "react";
 import styled from "styled-components";
+import { nanoid } from "nanoid";
+
+import { layout, type } from "components/styles/mixins";
+import { colors, spacers } from "components/styles/primitives";
 
 const Body = styled.div`
     background: ${colors.white};
@@ -44,7 +44,7 @@ const PageContent = ({ note, content }) => {
                 <Note>{note}</Note>
                 <Content>
                     {content.map((line) => (
-                        <Line>{line}</Line>
+                        <Line key={nanoid()}>{line}</Line>
                     ))}
                 </Content>
             </Container>
