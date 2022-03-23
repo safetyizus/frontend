@@ -203,7 +203,7 @@ const AddressInput = ({ label, name }) => {
         if (selectedResult) {
             const { context } = selectedResult;
 
-            const { text: postcode } = context.find((item) => {
+            const { text: postal_code } = context.find((item) => {
                 return item.id.includes("postcode");
             });
 
@@ -211,15 +211,10 @@ const AddressInput = ({ label, name }) => {
                 return item.id.includes("region");
             });
 
-            const { text: suburb } = context.find((item) => {
-                return item.id.includes("locality");
-            });
-
             setValues({
                 ...values,
                 address: selectedResult.place_name,
-                postcode,
-                suburb,
+                postal_code,
                 state,
             });
         }

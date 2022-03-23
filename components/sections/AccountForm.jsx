@@ -3,73 +3,86 @@ import { useRouter } from "next/router";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 
-import FormRow from "components/forms/FormRow";
-import FormSection from "components/forms/FormSection";
-import AccountTypeInput from "components/forms/AccountTypeInput";
-import TextInput from "components/forms/TextInput";
-import AddressInput from "components/forms/AddressInput";
-import Button from "components/elements/Button";
-import useLocalStorage from "hooks/useLocalStorage";
+import useProfile from "hooks/useProfile";
+
+import FormRow from "forms/FormRow";
+import FormSection from "forms/FormSection";
+import AccountTypeInput from "forms/AccountTypeInput";
+import TextInput from "forms/TextInput";
+import AddressInput from "forms/AddressInput";
+
+import Button from "elements/Button";
+import { updateProfile } from "helpers/profile";
+import LoadingState from "./LoadingState";
 
 const AccountSchema = Yup.object().shape({
     is_complete: Yup.boolean(),
-    type: Yup.string().oneOf(["owner", "agent"]),
-    first_name: Yup.string().required(),
-    last_name: Yup.string().required(),
-    phone: Yup.string().required(),
+    role: Yup.string().oneOf(["owner", "agent"]),
+    name: Yup.string().required(),
+    surname: Yup.string().required(),
+    mobile_number: Yup.string().required(),
     company: Yup.string().required(),
     address: Yup.string().required(),
-    postcode: Yup.string().required(),
+    postal_code: Yup.string().required(),
     state: Yup.string().required(),
 });
 
 const AccountForm = () => {
     const router = useRouter();
-    const [user, setUser] = useLocalStorage("siu_user");
+    const { user, profile, loading } = useProfile();
 
     const initialValues = {
-        type: null,
-        first_name: null,
-        last_name: null,
-        phone: null,
+        role: null,
+        name: null,
+        surname: null,
+        mobile_number: null,
         company: null,
         address: null,
-        postcode: null,
+        postal_code: null,
         state: null,
-        ...user,
+        ...profile,
     };
 
     const handleSubmit = async (values) => {
-        setUser({
-            ...user,
+        const data = {
+            ...profile,
             ...values,
+            email: user.email,
+            user_id: user.sub,
             is_complete: true,
-        });
+        };
+
+        console.log(values);
+
+        await updateProfile(data);
 
         router.push("/account");
     };
 
+    if (loading) {
+        return <LoadingState text="Loading account details..." />;
+    }
+
     return (
         <Formik
             initialValues={initialValues}
-            validationSchema={AccountSchema}
             onSubmit={handleSubmit}
+            validationSchema={AccountSchema}
             validateOnBlur={false}
             validateOnChange={false}
         >
             <Form>
-                {!user?.is_complete && (
+                {!profile?.is_complete && (
                     <FormSection heading="What type of account are you making?">
-                        <AccountTypeInput name="type" />
+                        <AccountTypeInput name="role" />
                     </FormSection>
                 )}
-
                 <FormSection heading="Personal Details">
                     <FormRow>
-                        <TextInput name="first_name" label="First Name" />
-                        <TextInput name="last_name" label="Last Name" />
+                        <TextInput name="name" label="First Name" />
+                        <TextInput name="surname" label="Last Name" />
                     </FormRow>
-                    <TextInput name="phone" label="Phone Number" />
+                    <TextInput name="mobile_number" label="Phone Number" />
                     <TextInput name="company" label="Company" />
                 </FormSection>
                 <FormSection heading="Address">

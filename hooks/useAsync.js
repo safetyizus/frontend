@@ -8,7 +8,7 @@ const useAsync = (callback, args, dependencies) => {
     const runAsync = useCallback(async () => {
         setLoading(true);
         try {
-            const response = await callback(args);
+            const response = await callback(...args);
             setData(response);
         } catch (error) {
             setError(error);

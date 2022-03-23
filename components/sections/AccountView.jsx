@@ -3,6 +3,8 @@ import useLocalStorage from "hooks/useLocalStorage";
 import styled from "styled-components";
 import { spacers, colors } from "components/styles/primitives";
 import { layout, type } from "components/styles/mixins";
+import useProfile from "hooks/useProfile";
+import LoadingState from "./LoadingState";
 
 const Body = styled.div`
     display: flex;
@@ -39,7 +41,11 @@ const Value = styled.p`
 `;
 
 const AccountView = () => {
-    const [user, _] = useLocalStorage("siu_user", {});
+    const { user, profile, loading } = useProfile();
+
+    if (loading) {
+        return <LoadingState text="Loading account details..." />;
+    }
 
     return (
         <Body>
@@ -50,16 +56,16 @@ const AccountView = () => {
                 <Row>
                     <Name>Name</Name>
                     <Value>
-                        {user.first_name} {user.last_name}
+                        {profile.name} {profile.surname}
                     </Value>
                 </Row>
                 <Row>
-                    <Name>Account Type</Name>
-                    <Value>{user.type}</Value>
+                    <Name>Role</Name>
+                    <Value>{profile.role}</Value>
                 </Row>
                 <Row>
                     <Name>Company</Name>
-                    <Value>{user.company}</Value>
+                    <Value>{profile.company}</Value>
                 </Row>
             </Section>
             <Section>
@@ -68,7 +74,7 @@ const AccountView = () => {
                 </Row>
                 <Row>
                     <Name>Phone</Name>
-                    <Value>{user.phone}</Value>
+                    <Value>{profile.mobile_number}</Value>
                 </Row>
             </Section>
             <Section>
@@ -77,17 +83,15 @@ const AccountView = () => {
                 </Row>
                 <Row>
                     <Name>Address</Name>
-                    <Value>
-                        {user.unit} {user.address}
-                    </Value>
+                    <Value>{profile.address}</Value>
                 </Row>
                 <Row>
                     <Name>State</Name>
-                    <Value>{user.state}</Value>
+                    <Value>{profile.state}</Value>
                 </Row>
                 <Row>
                     <Name>Post Code</Name>
-                    <Value>{user.postcode}</Value>
+                    <Value>{profile.postal_code}</Value>
                 </Row>
             </Section>
         </Body>
