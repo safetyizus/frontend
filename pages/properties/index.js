@@ -1,13 +1,14 @@
-import Link from "elements/Link";
-import Button from "elements/Button";
+import { useState } from "react";
+
+import withLayout from "hocs/withLayout";
+import { getAuthProps } from "helpers/ssr";
 
 import Header from "sections/Header";
 import PropertyList from "sections/PropertyList";
 
-import withLayout from "hocs/withLayout";
-import withAccount from "hocs/withAccount";
-import Select from "components/elements/Select";
-import { useState } from "react";
+import Select from "elements/Select";
+import Link from "elements/Link";
+import Button from "elements/Button";
 
 const Page = () => {
     const [sort, setSort] = useState("newest");
@@ -41,10 +42,12 @@ const Page = () => {
     );
 };
 
-export const getServerSideProps = async (ctx) => {
+const getProps = async (context) => {
     return {
         props: {},
     };
 };
 
-export default withAccount(withLayout(Page));
+export const getServerSideProps = getAuthProps(getProps);
+
+export default withLayout(Page);

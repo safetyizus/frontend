@@ -1,17 +1,17 @@
-import { useState } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
+
+import withLayout from "hocs/withLayout";
+import { getAuthProps } from "helpers/ssr";
+
+import useLocalStorage from "hooks/useLocalStorage";
+import useModal from "hooks/useModal";
 
 import Header from "sections/Header";
 import PropertyView from "sections/PropertyView";
 
-import withLayout from "hocs/withLayout";
-import withAccount from "hocs/withAccount";
-import { useRouter } from "next/router";
-import Link from "next/link";
-import Button from "components/elements/Button";
-import useLocalStorage from "hooks/useLocalStorage";
-
-import useModal from "hooks/useModal";
-import DeleteProperty from "components/modals/DeleteProperty";
+import Button from "elements/Button";
+import DeleteProperty from "modals/DeleteProperty";
 
 const Page = () => {
     const router = useRouter();
@@ -46,10 +46,12 @@ const Page = () => {
     );
 };
 
-export const getServerSideProps = async (ctx) => {
+const getProps = async (context) => {
     return {
         props: {},
     };
 };
 
-export default withAccount(withLayout(Page));
+export const getServerSideProps = getAuthProps(getProps);
+
+export default withLayout(Page);
