@@ -1,13 +1,13 @@
-import PageHero from "components/sections/PageHero";
-import PageContent from "components/sections/PageContent";
-import PageCards from "components/sections/PageCards";
+import PageHero from "sections/PageHero";
+import PageContent from "sections/PageContent";
+import PageCards from "sections/PageCards";
+import PageContact from "sections/PageContact";
+import PageFooter from "sections/PageFooter";
 
-import SmokeAlarm from "components/icons/SmokeAlarm";
-import Electrical from "components/icons/Electrical";
-import Gas from "components/icons/Gas";
-import Exit from "components/icons/Exit";
-import PageContact from "components/sections/PageContact";
-import PageFooter from "components/sections/PageFooter";
+import SmokeAlarm from "icons/SmokeAlarm";
+import Electrical from "icons/Electrical";
+import Gas from "icons/Gas";
+import Exit from "icons/Exit";
 
 const Page = () => {
     return (
@@ -66,7 +66,7 @@ const Page = () => {
     );
 };
 
-export const getServerSideProps = async (ctx) => {
+const getProps = async (context) => {
     return {
         props: {},
     };
