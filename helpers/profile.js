@@ -1,3 +1,5 @@
+import { getSession } from "@auth0/nextjs-auth0";
+
 import { api } from "./api";
 
 export const getProfile = async (email) => {

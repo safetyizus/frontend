@@ -1,4 +1,5 @@
 import { getSession } from "@auth0/nextjs-auth0";
+import { Router } from "next/router";
 import { getProfile } from "./profile";
 
 export const buildGetPropsWrapper = (getNextProps) => {
@@ -37,7 +38,10 @@ export const getAuthProps = buildGetPropsWrapper(async (context) => {
 
     const profile = await getProfile(session.user.email);
 
-    if (!profile.is_complete) {
+    if (
+        !context.resolvedUrl.includes("/account/create") &&
+        !profile.is_complete
+    ) {
         return {
             redirect: {
                 destination: "/account/create",

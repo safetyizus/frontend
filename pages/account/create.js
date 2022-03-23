@@ -21,15 +21,15 @@ const Page = () => {
 };
 
 const getProps = async (context) => {
-    const currentProfile = await getCurrentProfile(context);
-    if (currentProfile?.is_complete) {
-        return {
-            redirect: {
-                destination: "/account/edit",
-                permanent: false,
-            },
-        };
-    }
+    // const currentProfile = await getCurrentProfile(context);
+    // if (currentProfile?.is_complete) {
+    //     return {
+    //         redirect: {
+    //             destination: "/account/edit",
+    //             permanent: false,
+    //         },
+    //     };
+    // }
 
     return {
         props: {},
