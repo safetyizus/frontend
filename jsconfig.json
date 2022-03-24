@@ -5,6 +5,7 @@
             "common/*": ["./components/common/*"],
             "sections/*": ["./components/sections/*"],
             "styles/*": ["./components/styles/*"],
+            "modals/*": ["./components/modals/*"],
             "elements/*": ["./components/elements/*"],
             "wrappers/*": ["./components/wrappers/*"],
             "icons/*": ["./components/icons/*"],
