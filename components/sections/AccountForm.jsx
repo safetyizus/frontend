@@ -56,7 +56,7 @@ const AccountForm = () => {
 
         await updateProfile(data);
 
-        router.push("/account");
+        router.push("/profile");
     };
 
     if (loading) {

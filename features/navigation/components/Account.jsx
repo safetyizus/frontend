@@ -49,14 +49,14 @@ const Account = () => {
                 </Link>
             ) : (
                 <Fragment>
-                    <Link href="/account">
+                    <Link href="/profile">
                         <Item>
-                            <Text>My Account</Text>
+                            <Text>My Profile</Text>
                         </Item>
                     </Link>
-                    <Link href="/account/edit">
+                    <Link href="/profile/edit">
                         <Item>
-                            <Text>Account Settings</Text>
+                            <Text>Profile Settings</Text>
                         </Item>
                     </Link>
                     <Link href="/api/auth/logout">

@@ -9,11 +9,11 @@ const withAccount = (Component) => {
         const router = useRouter();
 
         useEffect(() => {
-            const isAccountCreatePage = router.pathname === "/account/create";
+            const isAccountCreatePage = router.pathname === "/profile/create";
             const isAccountIncomplete = !user?.is_complete;
 
             if (!isAccountCreatePage && isAccountIncomplete) {
-                router.push("/account/create");
+                router.push("/profile/create");
             }
         }, []);
 

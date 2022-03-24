@@ -52,11 +52,11 @@ const NAV_LINKS = [
         ],
     },
     {
-        label: "Account",
+        label: "Profile",
         links: [
             {
-                text: "My Account",
-                url: "/account",
+                text: "My Profile",
+                url: "/profile",
                 icon: Account,
             },
             {

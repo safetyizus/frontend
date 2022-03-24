@@ -1,6 +1,5 @@
 import withLayout from "hocs/withLayout";
 import { getAuthProps } from "helpers/ssr";
-import { getCurrentProfile } from "helpers/profile";
 
 import Header from "sections/Header";
 import AccountForm from "sections/AccountForm";
@@ -9,10 +8,10 @@ const Page = () => {
     return (
         <>
             <Header
-                title="Create Account"
+                title="Edit Account"
                 crumbs={[
                     { href: "/", text: "Home" },
-                    { href: "/account", text: "My Account" },
+                    { href: "/profile", text: "My Account" },
                 ]}
             />
             <AccountForm />
@@ -21,16 +20,6 @@ const Page = () => {
 };
 
 const getProps = async (context) => {
-    // const currentProfile = await getCurrentProfile(context);
-    // if (currentProfile?.is_complete) {
-    //     return {
-    //         redirect: {
-    //             destination: "/account/edit",
-    //             permanent: false,
-    //         },
-    //     };
-    // }
-
     return {
         props: {},
     };

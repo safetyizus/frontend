@@ -14,13 +14,13 @@ const Page = () => {
                 title="My Account"
                 crumbs={[
                     { href: "/", text: "Home" },
-                    { href: "/account", text: "My Account" },
+                    { href: "/profile", text: "My Account" },
                 ]}
             >
                 <Link href="/api/auth/logout">
                     <Button theme="secondary">Log Out</Button>
                 </Link>
-                <Link href="/account/edit">
+                <Link href="/profile/edit">
                     <Button>Edit Details</Button>
                 </Link>
             </Header>

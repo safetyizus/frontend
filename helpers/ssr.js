@@ -39,12 +39,12 @@ export const getAuthProps = buildGetPropsWrapper(async (context) => {
     const profile = await getProfile(session.user.email);
 
     if (
-        !context.resolvedUrl.includes("/account/create") &&
+        !context.resolvedUrl.includes("/profile/create") &&
         !profile.is_complete
     ) {
         return {
             redirect: {
-                destination: "/account/create",
+                destination: "/profile/create",
                 permanent: false,
             },
         };
